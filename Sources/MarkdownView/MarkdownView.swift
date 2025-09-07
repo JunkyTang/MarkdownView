@@ -61,6 +61,15 @@ open class MarkdownView: UIView {
   public required init?(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
   }
+    
+    
+    
+    
+    // ***********************
+    
+    var loadMarkdownScript: WKUserScript?
+    
+    // ***********************
 }
 
 extension MarkdownView {
@@ -252,4 +261,53 @@ private extension MarkdownView {
 
     return controller
   }
+    
+    
+    
+    
+}
+
+
+extension MarkdownView {
+    
+    
+    
+    public func easyLoad(markdown: String) {
+        
+        if self.webView == nil {
+            self.webView = easyMakeWebview()
+        }
+        
+        let escapedMarkdown = self.escape(markdown: markdown) ?? ""
+        let imageOption = "true"
+        let script = "window.showMarkdown('\(escapedMarkdown)', \(imageOption));"
+        let userScript = WKUserScript(source: script, injectionTime: .atDocumentEnd, forMainFrameOnly: true)
+        
+        webView?.configuration.userContentController.removeAllUserScripts()
+        webView?.configuration.userContentController.addUserScript(userScript)
+        loadMarkdownScript = userScript
+        
+        webView?.configuration.userContentController.removeScriptMessageHandler(forName: "updateHeight")
+        if let handler = updateHeightHandler {
+            webView?.configuration.userContentController.add(handler, name: "updateHeight")
+        }
+        self.webView?.load(URLRequest(url: Self.styledHtmlUrl))
+    }
+    
+    
+    public func easyMakeWebview() -> WKWebView {
+        let wv = WKWebView(frame: self.bounds, configuration: WKWebViewConfiguration())
+        wv.scrollView.isScrollEnabled = self.isScrollEnabled
+        wv.translatesAutoresizingMaskIntoConstraints = false
+        wv.navigationDelegate = self
+        addSubview(wv)
+        wv.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+        wv.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        wv.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+        wv.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+        wv.isOpaque = false
+        wv.backgroundColor = .clear
+        wv.scrollView.backgroundColor = .clear
+        return wv
+    }
 }

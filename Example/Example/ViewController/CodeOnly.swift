@@ -27,7 +27,9 @@ class CodeOnlySampleViewController: UIViewController {
 
     let url = URL(fileURLWithPath: path)
     let markdown = try! String(contentsOf: url, encoding: String.Encoding.utf8)
-    mdView.load(markdown: markdown, enableImage: true)
+      
+      mdView.easyMakeWebview()
+    mdView.easyLoad(markdown: markdown)
 
   }
 
