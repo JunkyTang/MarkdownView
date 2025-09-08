@@ -3,6 +3,6 @@
 const o=()=>{
 	var e=document.body,
 	t=document.documentElement,
-	a=Math.max(e.clientHeight);
+	a=Math.max(t.offsetHeight);
 	console.log(a),window?.webkit?.messageHandlers?.updateHeight?.postMessage(a)
 };i.use(n.default),window.usePlugin=e=>i.use(e),window.showMarkdown=(t,a=!0)=>{if(!t)return;const n=decodeURIComponent(t);a||(i=i.disable("image"));let r=i.render(n);document.getElementById("contents").innerHTML=r;var s=document.querySelectorAll("img");s.forEach((e=>{e.loading="lazy",e.onload=()=>{o()}})),window.imgs=s,document.querySelectorAll("table").forEach((e=>{e.classList.add("table")})),document.querySelectorAll("pre code").forEach((t=>{e.default.highlightBlock(t)})),o()}})()})();
