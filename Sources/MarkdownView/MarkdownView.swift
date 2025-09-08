@@ -51,7 +51,7 @@ open class MarkdownView: UIView {
     super.init(frame : frame)
     
     let updateHeightHandler = UpdateHeightHandler { [weak self] height in
-      guard height > self?.intrinsicContentHeight ?? 0 else { return }
+//      guard height > self?.intrinsicContentHeight ?? 0 else { return }
       self?.onRendered?(height)
       self?.intrinsicContentHeight = height
     }
@@ -64,12 +64,6 @@ open class MarkdownView: UIView {
     
     
     
-    
-    // ***********************
-    
-    var loadMarkdownScript: WKUserScript?
-    
-    // ***********************
 }
 
 extension MarkdownView {
@@ -274,23 +268,22 @@ extension MarkdownView {
     
     public func easyLoad(markdown: String) {
         
-        if self.webView == nil {
-            self.webView = easyMakeWebview()
+        if webView == nil {
+            webView = easyMakeWebview()
+            webView?.configuration.userContentController.removeScriptMessageHandler(forName: "updateHeight")
+            if let handler = updateHeightHandler {
+                webView?.configuration.userContentController.add(handler, name: "updateHeight")
+            }
         }
         
         let escapedMarkdown = self.escape(markdown: markdown) ?? ""
         let imageOption = "true"
         let script = "window.showMarkdown('\(escapedMarkdown)', \(imageOption));"
-        let userScript = WKUserScript(source: script, injectionTime: .atDocumentEnd, forMainFrameOnly: true)
         
         webView?.configuration.userContentController.removeAllUserScripts()
+        let userScript = WKUserScript(source: script, injectionTime: .atDocumentEnd, forMainFrameOnly: true)
         webView?.configuration.userContentController.addUserScript(userScript)
-        loadMarkdownScript = userScript
         
-        webView?.configuration.userContentController.removeScriptMessageHandler(forName: "updateHeight")
-        if let handler = updateHeightHandler {
-            webView?.configuration.userContentController.add(handler, name: "updateHeight")
-        }
         self.webView?.load(URLRequest(url: Self.styledHtmlUrl))
     }
     

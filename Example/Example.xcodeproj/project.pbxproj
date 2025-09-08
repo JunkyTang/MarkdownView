@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		041B30762E6E6C2300961C42 /* sample2.md in Resources */ = {isa = PBXBuildFile; fileRef = 041B30752E6E6C2300961C42 /* sample2.md */; };
 		3E3DF024278C5387009DD55A /* SampleUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3DF023278C5387009DD55A /* SampleUI.swift */; };
 		3E5E1E1E26E8F1620098F0E3 /* CustomCss.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5E1E1D26E8F1610098F0E3 /* CustomCss.swift */; };
 		3E71C76026EA0D7400C79EA9 /* Plugins.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E71C75F26EA0D7400C79EA9 /* Plugins.swift */; };
@@ -22,10 +23,11 @@
 		FCB2E9491ECA929500285B87 /* Storyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCB2E9481ECA929500285B87 /* Storyboard.swift */; };
 		FCB2E94B1ECA93CB00285B87 /* ScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCB2E94A1ECA93CB00285B87 /* ScrollView.swift */; };
 		FCB2E94F1ECADF3700285B87 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = FCB2E94E1ECADF3700285B87 /* README.md */; };
-		FCB2E9511ECAF36500285B87 /* sample.md in Resources */ = {isa = PBXBuildFile; fileRef = FCB2E9501ECAF36500285B87 /* sample.md */; };
+		FCB2E9511ECAF36500285B87 /* sample1.md in Resources */ = {isa = PBXBuildFile; fileRef = FCB2E9501ECAF36500285B87 /* sample1.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		041B30752E6E6C2300961C42 /* sample2.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = sample2.md; sourceTree = "<group>"; };
 		3E3DF023278C5387009DD55A /* SampleUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleUI.swift; sourceTree = "<group>"; };
 		3E5E1E1D26E8F1610098F0E3 /* CustomCss.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCss.swift; sourceTree = "<group>"; };
 		3E71C75F26EA0D7400C79EA9 /* Plugins.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plugins.swift; sourceTree = "<group>"; };
@@ -45,7 +47,7 @@
 		FCB2E9481ECA929500285B87 /* Storyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storyboard.swift; sourceTree = "<group>"; };
 		FCB2E94A1ECA93CB00285B87 /* ScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollView.swift; sourceTree = "<group>"; };
 		FCB2E94E1ECADF3700285B87 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../../README.md; sourceTree = "<group>"; };
-		FCB2E9501ECAF36500285B87 /* sample.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = sample.md; path = ../../sample.md; sourceTree = "<group>"; };
+		FCB2E9501ECAF36500285B87 /* sample1.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = sample1.md; path = ../../sample1.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,7 +124,8 @@
 			children = (
 				3E3DF022278C5375009DD55A /* SwiftUI */,
 				3E5E1E1F26E8F1670098F0E3 /* ViewController */,
-				FCB2E9501ECAF36500285B87 /* sample.md */,
+				FCB2E9501ECAF36500285B87 /* sample1.md */,
+				041B30752E6E6C2300961C42 /* sample2.md */,
 				FCB2E94E1ECADF3700285B87 /* README.md */,
 				DE524D641EC47CB100E8C2F9 /* AppDelegate.swift */,
 				FCB2E9461ECA8B7600285B87 /* ViewController.swift */,
@@ -197,10 +200,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				FCB2E94F1ECADF3700285B87 /* README.md in Resources */,
-				FCB2E9511ECAF36500285B87 /* sample.md in Resources */,
+				FCB2E9511ECAF36500285B87 /* sample1.md in Resources */,
 				DE524D6F1EC47CB100E8C2F9 /* LaunchScreen.storyboard in Resources */,
 				DE524D6C1EC47CB100E8C2F9 /* Assets.xcassets in Resources */,
 				DE524D6A1EC47CB100E8C2F9 /* Main.storyboard in Resources */,
+				041B30762E6E6C2300961C42 /* sample2.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

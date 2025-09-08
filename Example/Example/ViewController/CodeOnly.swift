@@ -12,9 +12,12 @@ class CodeOnlySampleViewController: UIViewController {
     fatalError("init(coder:) has not been implemented")
   }
   
+    var markdownView: MarkdownView?
+    
   override func viewDidLoad() {
     super.viewDidLoad()
 
+      
     let mdView = MarkdownView()
     view.addSubview(mdView)
     mdView.translatesAutoresizingMaskIntoConstraints = false
@@ -22,15 +25,28 @@ class CodeOnlySampleViewController: UIViewController {
     mdView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
     mdView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
     mdView.bottomAnchor.constraint(equalTo: bottomLayoutGuide.topAnchor).isActive = true
+      mdView.onRendered = { print("height = \($0)") }
+    markdownView = mdView
+      navigationItem.rightBarButtonItem = UIBarButtonItem(title: "reload", style: .done, target: self, action: #selector(loadMarkdown))
 
-    let path = Bundle.main.path(forResource: "sample", ofType: "md")!
-
-    let url = URL(fileURLWithPath: path)
-    let markdown = try! String(contentsOf: url, encoding: String.Encoding.utf8)
       
-      mdView.easyMakeWebview()
-    mdView.easyLoad(markdown: markdown)
+      
+      let path = Bundle.main.path(forResource: "sample1", ofType: "md")!
 
+      let url = URL(fileURLWithPath: path)
+      let markdown = try! String(contentsOf: url, encoding: String.Encoding.utf8)
+        
+      markdownView?.easyLoad(markdown: markdown)
   }
+    
+    
+    @objc func loadMarkdown() {
+        let path = Bundle.main.path(forResource: "sample2", ofType: "md")!
+
+        let url = URL(fileURLWithPath: path)
+        let markdown = try! String(contentsOf: url, encoding: String.Encoding.utf8)
+          
+        markdownView?.easyLoad(markdown: markdown)
+    }
 
 }
