@@ -25,7 +25,11 @@ class CodeOnlySampleViewController: UIViewController {
     mdView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
     mdView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
     mdView.bottomAnchor.constraint(equalTo: bottomLayoutGuide.topAnchor).isActive = true
-      mdView.onRendered = { print("height = \($1)") }
+      mdView.onRendered = {
+          print("height = \($1)")
+      }
+
+      
     markdownView = mdView
       navigationItem.rightBarButtonItem = UIBarButtonItem(title: "reload", style: .done, target: self, action: #selector(loadMarkdown))
 
