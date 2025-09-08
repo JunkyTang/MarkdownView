@@ -25,7 +25,7 @@ open class MarkdownView: UIView {
 
   @objc public var onTouchLink: ((URLRequest) -> Bool)?
 
-  @objc public var onRendered: ((CGFloat) -> Void)?
+  @objc public var onRendered: ((AnyObject? ,CGFloat) -> Void)?
 
   public convenience init() {
     self.init(frame: .zero)
@@ -52,7 +52,7 @@ open class MarkdownView: UIView {
     
     let updateHeightHandler = UpdateHeightHandler { [weak self] height in
 //      guard height > self?.intrinsicContentHeight ?? 0 else { return }
-      self?.onRendered?(height)
+        self?.onRendered?(self?.ralateObject, height)
       self?.intrinsicContentHeight = height
     }
     self.updateHeightHandler = updateHeightHandler
@@ -62,7 +62,7 @@ open class MarkdownView: UIView {
     super.init(coder: aDecoder)
   }
     
-    
+    var ralateObject: AnyObject?
     
 }
 
@@ -266,8 +266,8 @@ extension MarkdownView {
     
     
     
-    public func easyLoad(markdown: String) {
-        
+    public func easyLoad(markdown: String, object: AnyObject? = nil) {
+        ralateObject = object
         if webView == nil {
             webView = easyMakeWebview()
             webView?.configuration.userContentController.removeScriptMessageHandler(forName: "updateHeight")

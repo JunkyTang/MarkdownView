@@ -25,7 +25,7 @@ class CodeOnlySampleViewController: UIViewController {
     mdView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
     mdView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
     mdView.bottomAnchor.constraint(equalTo: bottomLayoutGuide.topAnchor).isActive = true
-      mdView.onRendered = { print("height = \($0)") }
+      mdView.onRendered = { print("height = \($1)") }
     markdownView = mdView
       navigationItem.rightBarButtonItem = UIBarButtonItem(title: "reload", style: .done, target: self, action: #selector(loadMarkdown))
 
@@ -36,7 +36,7 @@ class CodeOnlySampleViewController: UIViewController {
       let url = URL(fileURLWithPath: path)
       let markdown = try! String(contentsOf: url, encoding: String.Encoding.utf8)
         
-      markdownView?.easyLoad(markdown: markdown)
+      markdownView?.easyLoad(markdown: markdown, object: nil)
   }
     
     
@@ -46,7 +46,7 @@ class CodeOnlySampleViewController: UIViewController {
         let url = URL(fileURLWithPath: path)
         let markdown = try! String(contentsOf: url, encoding: String.Encoding.utf8)
           
-        markdownView?.easyLoad(markdown: markdown)
+        markdownView?.easyLoad(markdown: markdown, object: nil)
     }
 
 }

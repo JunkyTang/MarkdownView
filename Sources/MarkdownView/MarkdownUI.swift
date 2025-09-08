@@ -17,7 +17,9 @@ public final class MarkdownUI: UIViewRepresentable {
   }
   
   public func onRendered(perform action: @escaping ((CGFloat) -> Void)) -> MarkdownUI {
-    self.markdownView.onRendered = action
+      self.markdownView.onRendered = {
+          action($1)
+      }
     return self
   }
 }

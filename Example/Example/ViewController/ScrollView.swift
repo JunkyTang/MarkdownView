@@ -11,7 +11,7 @@ class ScrollViewSampleViewController: UIViewController {
 
     mdView.isScrollEnabled = false
 
-    mdView.onRendered = { height in
+    mdView.onRendered = { obj, height in
       print(height)
     }
 
