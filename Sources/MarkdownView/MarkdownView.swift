@@ -121,6 +121,20 @@ extension MarkdownView: WKNavigationDelegate {
     }
 
   }
+    
+    
+    public func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        webView.evaluateJavaScript("document.documentElement.scrollHeight") { (result, error) in
+            if let error = error {
+                return
+            }
+            
+            if let height = result as? CGFloat {
+                
+            }
+        }
+    }
+    
 }
 
 // MARK: -
