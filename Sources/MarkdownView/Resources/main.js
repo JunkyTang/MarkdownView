@@ -3,11 +3,38 @@
 const o = () => {
     var e = document.body,
         t = document.documentElement;
-    
-    window.onload = function() {
-        // 页面完全加载后再计算高度
-        var a = Math.max(t.offsetHeight, e.scrollHeight);
-        console.log(a);
-        window?.webkit?.messageHandlers?.updateHeight?.postMessage(a);
-    }
-};i.use(n.default),window.usePlugin=e=>i.use(e),window.showMarkdown=(t,a=!0)=>{if(!t)return;const n=decodeURIComponent(t);a||(i=i.disable("image"));let r=i.render(n);document.getElementById("contents").innerHTML=r;var s=document.querySelectorAll("img");s.forEach((e=>{e.loading="lazy",e.onload=()=>{o()}})),window.imgs=s,document.querySelectorAll("table").forEach((e=>{e.classList.add("table")})),document.querySelectorAll("pre code").forEach((t=>{e.default.highlightBlock(t)})),o()}})()})();
+    var a = Math.max(t.offsetHeight, e.scrollHeight);
+
+    console.log(a);
+    window?.webkit?.messageHandlers?.updateHeight?.postMessage(a);
+};
+
+// 使用 MutationObserver 监听 DOM 的变化
+const observeDOMChanges = () => {
+    const observer = new MutationObserver(() => {
+        setTimeout(() => {
+            // 延时执行获取高度，确保内容加载完成
+            o();
+        }, 100); // 100ms 延迟，可以根据实际情况调整
+    });
+
+    // 配置观察的目标和类型
+    observer.observe(document.body, {
+        childList: true,
+        subtree: true,
+        attributes: true,
+    });
+};
+
+// 页面加载完成后，初始化监听 DOM 变化
+window.onload = function () {
+    observeDOMChanges();
+    o();  // 初次获取高度
+};
+
+// 页面内容变化时动态获取高度
+document.addEventListener('DOMContentLoaded', function () {
+    observeDOMChanges();
+    o();  // 初次获取高度
+});i.use(n.default),window.usePlugin=e=>i.use(e),window.showMarkdown=(t,a=!0)=>{if(!t)return;const n=decodeURIComponent(t);a||(i=i.disable("image"));let r=i.render(n);document.getElementById("contents").innerHTML=r;var s=document.querySelectorAll("img");s.forEach((e=>{e.loading="lazy",e.onload=()=>{o()}})),window.imgs=s,document.querySelectorAll("table").forEach((e=>{e.classList.add("table")})),document.querySelectorAll("pre code").forEach((t=>{e.default.highlightBlock(t)})),o()}})()})();
+
